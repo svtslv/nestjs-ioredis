@@ -43,7 +43,7 @@ import { AppController } from './app.controller';
         // host: 'localhost',
         // port: 6379,
         url: 'redis://localhost:6379',
-      }
+      },
     }),
   ],
   controllers: [AppController],
@@ -67,7 +67,7 @@ import { AppController } from './app.controller';
           // port: 6379,
           url: 'redis://localhost:6379',
         },
-      })
+      }),
     }),
   ],
   controllers: [AppController],
