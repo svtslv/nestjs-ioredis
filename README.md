@@ -84,7 +84,6 @@ import { InjectRedis, Redis } from '@svtslv/nestjs-ioredis';
 @Controller()
 export class AppController {
   constructor(
-    // @InjectRedis(connection?)
     @InjectRedis() private readonly redis: Redis,
   ) {}
 
