@@ -1,5 +1,5 @@
-import { Global, Module, DynamicModule, Provider } from "@nestjs/common";
-import { RedisModuleAsyncOptions, RedisModuleOptions, RedisModuleOptionsFactory } from "./redis.interfaces";
+import { Global, Module, DynamicModule, Provider } from '@nestjs/common';
+import { RedisModuleAsyncOptions, RedisModuleOptions, RedisModuleOptionsFactory } from './redis.interfaces';
 import { createRedisConnection, getRedisOptionsToken, getRedisConnectionToken } from './redis.utils'
 
 @Global()
@@ -55,7 +55,7 @@ export class RedisCoreModule {
   public static createAsyncProviders(options: RedisModuleAsyncOptions, connection?: string): Provider[] {
 
     if(!(options.useExisting || options.useFactory || options.useClass)) {
-      throw new Error("Invalid configuration. Must provide useFactory, useClass or useExisting");
+      throw new Error('Invalid configuration. Must provide useFactory, useClass or useExisting');
     }
 
     if (options.useExisting || options.useFactory) {
@@ -74,7 +74,7 @@ export class RedisCoreModule {
   public static createAsyncOptionsProvider(options: RedisModuleAsyncOptions, connection?: string): Provider {
 
     if(!(options.useExisting || options.useFactory || options.useClass)) {
-      throw new Error("Invalid configuration. Must provide useFactory, useClass or useExisting");
+      throw new Error('Invalid configuration. Must provide useFactory, useClass or useExisting');
     }
 
     if (options.useFactory) {

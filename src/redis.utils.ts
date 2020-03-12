@@ -1,4 +1,4 @@
-import { RedisModuleOptions } from "./redis.interfaces";
+import { RedisModuleOptions } from './redis.interfaces';
 import * as Redis from 'ioredis';
 import {
   REDIS_MODULE_CONNECTION,
