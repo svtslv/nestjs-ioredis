@@ -36,12 +36,16 @@ import { AppController } from './app.controller';
 
 @Module({
   imports: [
-    RedisModule.forRoot({
-      config: 'redis://localhost:6379',
-      // config: { 
-      //   port: 6379,
-      //   host: 'localhost',
-      // },
+    // RedisModule.forRoot(options, connection?),
+    // RedisModule.forRootAsync(asyncOptions, connection?),
+    RedisModule.forRootAsync({
+      useFactory: () => ({
+        config: { 
+          // port: 6379,
+          // host: 'localhost',
+          url: 'redis://localhost:6379',
+        },
+      })
     }),
   ],
   controllers: [AppController],
@@ -56,6 +60,7 @@ import { InjectRedis, Redis } from '@svtslv/nestjs-ioredis';
 @Controller()
 export class AppController {
   constructor(
+    // @InjectRedis(connection?)
     @InjectRedis() private readonly redis: Redis,
   ) {}
 

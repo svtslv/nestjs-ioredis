@@ -1,38 +1,22 @@
-import { Module, DynamicModule, Provider } from "@nestjs/common";
-import { RedisModuleOptions, RedisModuleAsyncOptions } from './redis.interfaces';
-import { createRedisConnection, getRedisOptionsToken, getRedisConnectionToken } from './redis.utils'
+import { DynamicModule, Module } from "@nestjs/common";
+import { RedisCoreModule } from "./redis.core-module";
+import { RedisModuleAsyncOptions, RedisModuleOptions } from "./redis.interfaces";
 
 @Module({})
 export class RedisModule {
-  static forRoot(options: RedisModuleOptions, connection?: string): DynamicModule {
-
-    const redisModuleOptions: Provider = {
-      provide: getRedisOptionsToken(connection),
-      useValue: options,
-    };
-
-    const redisConnectionProvider: Provider = {
-      provide: getRedisConnectionToken(connection),
-      useValue: createRedisConnection(options),
-    };
-
+  public static forRoot(options: RedisModuleOptions, connection?: string): DynamicModule {
     return {
       module: RedisModule,
-      providers: [
-        redisModuleOptions,
-        redisConnectionProvider,
-      ],
-      exports: [
-        redisModuleOptions,
-        redisConnectionProvider,
-      ],
+      imports: [RedisCoreModule.forRoot(options, connection)],
+      exports: [RedisCoreModule],
     };
   }
 
-  static forRootAsync(options: RedisModuleAsyncOptions, connection?: string): DynamicModule {
+  public static forRootAsync(options: RedisModuleAsyncOptions, connection?: string): DynamicModule {
     return {
       module: RedisModule,
-      imports: [RedisModule.forRootAsync(options, connection)],
+      imports: [RedisCoreModule.forRootAsync(options, connection)],
+      exports: [RedisCoreModule],
     };
   }
 }

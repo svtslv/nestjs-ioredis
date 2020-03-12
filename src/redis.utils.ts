@@ -16,8 +16,8 @@ export function getRedisConnectionToken(connection: string): string {
 
 export function createRedisConnection(options: RedisModuleOptions) {
   const { config } = options;
-  if (typeof config === 'string') {
-    return new Redis(config);
+  if (config.url) {
+    return new Redis(config.url, config);
   } else {
     return new Redis(config);
   }
