@@ -29,6 +29,8 @@ npm install -D @types/ioredis
 docker run -p 6379:6379 redis
 ```
 
+### RedisModule.forRoot(options, connection?)
+
 ```ts
 import { Module } from '@nestjs/common';
 import { RedisModule } from '@svtslv/nestjs-ioredis';
@@ -36,13 +38,33 @@ import { AppController } from './app.controller';
 
 @Module({
   imports: [
-    // RedisModule.forRoot(options, connection?),
-    // RedisModule.forRootAsync(asyncOptions, connection?),
+    RedisModule.forRootAsync({
+      config: { 
+        // host: 'localhost',
+        // port: 6379,
+        url: 'redis://localhost:6379',
+      }
+    }),
+  ],
+  controllers: [AppController],
+})
+export class AppModule {}
+```
+
+### RedisModule.forRootAsync(options, connection?)
+
+```ts
+import { Module } from '@nestjs/common';
+import { RedisModule } from '@svtslv/nestjs-ioredis';
+import { AppController } from './app.controller';
+
+@Module({
+  imports: [
     RedisModule.forRootAsync({
       useFactory: () => ({
         config: { 
-          // port: 6379,
           // host: 'localhost',
+          // port: 6379,
           url: 'redis://localhost:6379',
         },
       })
@@ -52,6 +74,8 @@ import { AppController } from './app.controller';
 })
 export class AppModule {}
 ```
+
+### InjectRedis(connection?)
 
 ```ts
 import { Controller, Get, } from '@nestjs/common';
