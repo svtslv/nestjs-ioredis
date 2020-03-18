@@ -23,6 +23,12 @@ npm install @svtslv/nestjs-ioredis ioredis
 npm install -D @types/ioredis
 ```
 
+You can also use the interactive CLI
+
+```sh
+npx nestjs-modules
+```
+
 ## Examples
 
 ```sh
