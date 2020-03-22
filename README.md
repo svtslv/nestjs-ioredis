@@ -44,7 +44,7 @@ import { AppController } from './app.controller';
 
 @Module({
   imports: [
-    RedisModule.forRootAsync({
+    RedisModule.forRoot({
       config: { 
         // host: 'localhost',
         // port: 6379,
