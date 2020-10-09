@@ -102,6 +102,34 @@ export class AppController {
 }
 ```
 
+### Cluster Support
+
+```ts
+import { Module } from '@nestjs/common';
+import { RedisModule } from '@svtslv/nestjs-ioredis';
+import { AppController } from './app.controller';
+
+import Redis from 'ioredis';
+
+@Module({
+  imports: [
+    RedisModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: async (configService: ConfigService) => ({
+        createClient: () => new Redis.Cluster([{
+          // host: 'localhost',
+          // port: 6379,
+        }])
+      }),
+    }),
+  ],
+  controllers: [AppController],
+})
+export class AppModule {}
+
+```
+
 ## License
 
 MIT
