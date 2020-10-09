@@ -18,7 +18,6 @@ export function createRedisConnection(options: RedisModuleOptions) {
   const { config, createClient } = options;
 
   if (createClient) {
-    console.log(createClient)
     return createClient();
   }
 
