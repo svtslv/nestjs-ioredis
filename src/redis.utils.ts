@@ -15,7 +15,13 @@ export function getRedisConnectionToken(connection: string): string {
 }
 
 export function createRedisConnection(options: RedisModuleOptions) {
-  const { config } = options;
+  const { config, createClient } = options;
+
+  if (createClient) {
+    console.log(createClient)
+    return createClient();
+  }
+
   if (config.url) {
     return new Redis(config.url, config);
   } else {
