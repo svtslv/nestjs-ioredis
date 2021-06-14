@@ -4,7 +4,8 @@ import * as Redis from 'ioredis';
 export type Redis = Redis.Redis;
 
 export interface RedisModuleOptions {
-  config: Redis.RedisOptions & { url?: string };
+  config?: Redis.RedisOptions & { url?: string };
+  createClient?(redisOpts?: Redis.RedisOptions): Redis.Redis | Redis.Cluster;
 }
 
 export interface RedisModuleOptionsFactory {
