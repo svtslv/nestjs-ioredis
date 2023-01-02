@@ -39,7 +39,7 @@
     "ioredis": ">=4.0.0"
   },
   "devDependencies": {
-    "@nestjs/common": "^7.0.3",
+    "@nestjs/common": "^9.2.1",
     "@nestjs/core": "^7.0.3",
     "@nestjs/testing": "^7.0.3",
     "@types/ioredis": "^4.14.9",
